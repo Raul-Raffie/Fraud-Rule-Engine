@@ -1,0 +1,29 @@
+services:
+
+  transaction-db:
+    image: postgres:16
+    container_name: transaction-db
+    environment:
+      POSTGRES_DB: fraud_transactions_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - transaction_data:/var/lib/postgresql/data
+
+  fraud-case-db:
+    image: postgres:16
+    container_name: fraud-case-db
+    environment:
+      POSTGRES_DB: fraud_cases_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5433:5432"
+    volumes:
+      - fraud_case_data:/var/lib/postgresql/data
+
+volumes:
+  transaction_data:
+  fraud_case_data:
